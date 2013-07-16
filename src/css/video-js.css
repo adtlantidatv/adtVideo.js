@@ -1,3 +1,8 @@
+/*!
+Video.js Default Styles (http://videojs.com)
+Version GENERATED_AT_BUILD
+*/
+
 /*
 REQUIRED STYLES (be careful overriding)
 ================================================================================ */
@@ -124,18 +129,11 @@ body.vjs-full-window {
   visibility: hidden;
   opacity: 0;
 
-  -webkit-transition: visibility 1.5s, opacity 1.5s;
-     -moz-transition: visibility 1.5s, opacity 1.5s;
-      -ms-transition: visibility 1.5s, opacity 1.5s;
-       -o-transition: visibility 1.5s, opacity 1.5s;
-          transition: visibility 1.5s, opacity 1.5s;
-
-  /* Wait a moment before fading out the control bar */
-  -webkit-transition-delay: 2s;
-     -moz-transition-delay: 2s;
-      -ms-transition-delay: 2s;
-       -o-transition-delay: 2s;
-          transition-delay: 2s;
+  -webkit-transition: visibility 0.2s, opacity 0.2s;
+     -moz-transition: visibility 0.2s, opacity 0.2s;
+      -ms-transition: visibility 0.2s, opacity 0.2s;
+       -o-transition: visibility 0.2s, opacity 0.2s;
+          transition: visibility 0.2s, opacity 0.2s;
 }
 /* Hide disabled or unsupported controls */
 .vjs-default-skin .vjs-hidden { display: none; }
@@ -197,7 +195,7 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 .vjs-default-skin .vjs-slider-handle:before {
   /*content: "\f111";*/ /* Circle icon = f111 */
   content: "\e009"; /* Square icon */
-  font-family: VideoJS;
+  font-family: FontAwesome;
   font-size: 1em;
   line-height: 1;
   text-align: center;
@@ -230,10 +228,10 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   padding: 0;
   margin: 0;
   /* Height includes any margin you want above or below control items */
-  height: 3.0em;
+  height: 15px;
   background-color: rgb(0, 0, 0);
   /* Slight blue so it can be seen more easily on black. */
-  background-color: rgba(7, 40, 50, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   /* Default font settings */
   font-style: normal;
   font-weight: normal;
@@ -248,15 +246,14 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   text-align: center;
   margin: 0;
   padding: 0;
-  height: 3.0em;
-  width: 4em;
 }
+.vjs-default-skin .vjs-menu-group .vjs-control{margin-left:5px}
+.vjs-default-skin .vjs-menu-group .vjs-menu-button{margin-left:20px}
 
 /* FontAwsome button icons */
 .vjs-default-skin .vjs-control:before {
-  font-family: VideoJS;
+  font-family: FontAwesome;
   font-size: 1.5em;
-  line-height: 2;
   position: absolute;
   top: 0;
   left: 0;
@@ -277,39 +274,176 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 /* Hide control text visually, but have it available for screenreaders: h5bp.com/v */
 .vjs-default-skin .vjs-control-text { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
 
+
+/* Progress
+-------------------------------------------------------------------------------- */
+.vjs-default-skin .vjs-progress-control {
+  position: absolute;
+  left: 70px;
+  right: 0;
+  width: auto;
+  font-size: 0.3em;
+  height: 15px;
+  /* Set above the rest of the controls. */
+  bottom:0;
+
+  /* Shrink the bar slower than it grows. */
+  -webkit-transition: top 0.4s, height 0.4s, font-size 0.4s, -webkit-transform 0.4s;
+     -moz-transition: top 0.4s, height 0.4s, font-size 0.4s,    -moz-transform 0.4s;
+       -o-transition: top 0.4s, height 0.4s, font-size 0.4s,      -o-transform 0.4s;
+          transition: top 0.4s, height 0.4s, font-size 0.4s,         transform 0.4s;
+
+}
+
+/* On hover, make the progress bar grow to something that's more clickable.
+    This simply changes the overall font for the progress bar, and this
+    updates both the em-based widths and heights, as wells as the icon font */
+.vjs-default-skin:hover .vjs-progress-control {
+  font-size: .9em;
+
+  /* Even though we're not changing the top/height, we need to include them in
+      the transition so they're handled correctly. */
+  -webkit-transition: top 0.2s, height 0.2s, font-size 0.2s, -webkit-transform 0.2s;
+     -moz-transition: top 0.2s, height 0.2s, font-size 0.2s,    -moz-transform 0.2s;
+       -o-transition: top 0.2s, height 0.2s, font-size 0.2s,      -o-transform 0.2s;
+          transition: top 0.2s, height 0.2s, font-size 0.2s,         transform 0.2s;
+}
+
+/* Box containing play and load progresses. Also acts as seek scrubber. */
+.vjs-default-skin .vjs-progress-holder {
+  /* Placement within the progress control item */
+  height: 100%;
+}
+
+/* Progress Bars */
+.vjs-default-skin .vjs-progress-holder .vjs-play-progress,
+.vjs-default-skin .vjs-progress-holder .vjs-load-progress {
+  position: absolute;
+  display: block;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* Needed for IE6 */
+  left: 0;
+  top: 0;
+}
+
+.vjs-default-skin .vjs-play-progress {background: #6fe3fd}
+.vjs-default-skin .vjs-load-progress {
+  background: rgb(100, 100, 100); /* IE8- Fallback */
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.vjs-default-skin .vjs-seek-handle {display:none}
+
+/* Time Display
+-------------------------------------------------------------------------------- */
+.vjs-default-skin .vjs-time-controls {
+  font-size: 10px;
+  /* Align vertically by making the line height the same as the control bar */
+  line-height: 15px;
+  margin-left: 5px
+}
+.vjs-default-skin .vjs-current-time { float: left; }
+.vjs-default-skin .vjs-duration { float: left; }
+/* Remaining time is in the HTML, but not included in default design */
+.vjs-default-skin .vjs-remaining-time { display: none; float: left; }
+.vjs-time-divider { float: left; line-height: 15px; margin-left:5px }
+
+
+/* Menu Group
+-------------------------------------------------------------------------------- */
+.vjs-default-skin .vjs-menu-group{position:absolute; top:50%; left:50%; margin-top:-47px; margin-left:-107px}
+
+
+/* Fullscreen
+-------------------------------------------------------------------------------- */
+.vjs-default-skin .vjs-fullscreen-control {
+  width:50px;
+  height:50px;
+  cursor: pointer;
+  float: left;
+  border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;
+  background:black;
+  display:block;
+  margin-top:22px;
+}
+.vjs-default-skin .vjs-fullscreen-control:before {
+	content: "\F065"; /* Enter full screen */
+	line-height:50px;
+}
+.vjs-default-skin.vjs-fullscreen .vjs-fullscreen-control:before {
+  content: "\e00b"; /* Exit full screen */
+}
+
+/* Share
+-------------------------------------------------------------------------------- */
+.vjs-default-skin .vjs-share-control {
+  width:50px;
+  height:50px;
+  cursor: pointer;
+  float: left;
+  border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;
+  background:black;
+  display:block;
+  margin-top:22px;
+}
+.vjs-default-skin .vjs-share-control:before {
+	content: "\F064"; /* Enter full screen */
+	line-height:50px;
+}
+
+/* Subtitles Button */
+.vjs-default-skin .vjs-subtitles-button:before { content: "\e00c"; }
+
+/* There's unfortunately no CC button in FontAwesome, so we need
+    to use another font. Please +1 the fontawesome request.
+    https://github.com/FortAwesome/Font-Awesome/issues/968 */
+.vjs-default-skin .vjs-captions-button:before {
+  content: "cc";
+}
+
 /* Play/Pause
 -------------------------------------------------------------------------------- */
 .vjs-default-skin .vjs-play-control {
-  width: 5em;
+  width:94px;
+  height:94px;
   cursor: pointer;
+  float: left;
+  border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;
+  background:black;
+  display:block;
+  margin-right:15px
 }
 .vjs-default-skin .vjs-play-control:before {
-  content: "\e001"; /* Play Icon */
+  content: "\F04B"; /* Play Icon */
+	line-height:94px;
 }
 .vjs-default-skin.vjs-playing .vjs-play-control:before {
-  content: "\e002"; /* Pause Icon */
+  content: "\F04C"; /* Pause Icon */
 }
-
-/* Rewind
--------------------------------------------------------------------------------- */
-/*.vjs-default-skin .vjs-rewind-control { width: 5em; cursor: pointer !important; }
-.vjs-default-skin .vjs-rewind-control div { width: 19px; height: 16px; background: url('video-js.png'); margin: 0.5em auto 0; }
-*/
 
 /* Volume/Mute
 -------------------------------------------------------------------------------- */
 .vjs-default-skin .vjs-mute-control,
 .vjs-default-skin .vjs-volume-menu-button {
+  width:50px;
+  height:50px;
   cursor: pointer;
-  float: right;
+  float: left;
+  border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;
+  background:black;
+  display:block;
+  margin-top:22px;
+  line-height: 50px;
 }
 .vjs-default-skin .vjs-mute-control:before,
 .vjs-default-skin .vjs-volume-menu-button:before {
-  content: "\e006"; /* Full volume */
+  content: "\F028"; /* Full volume */
 }
 .vjs-default-skin .vjs-mute-control.vjs-vol-0:before,
 .vjs-default-skin .vjs-volume-menu-button.vjs-vol-0:before {
-  content: "\e003"; /* No volume */
+  content: "\F026"; /* No volume */
 }
 .vjs-default-skin .vjs-mute-control.vjs-vol-1:before,
 .vjs-default-skin .vjs-volume-menu-button.vjs-vol-1:before {
@@ -367,182 +501,6 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   height: 1.5em;
 }*/
 
-/* Progress
--------------------------------------------------------------------------------- */
-.vjs-default-skin .vjs-progress-control {
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: auto;
-  font-size: 0.3em;
-  height: 1em;
-  /* Set above the rest of the controls. */
-  top: -1em;
-
-  /* Shrink the bar slower than it grows. */
-  -webkit-transition: top 0.4s, height 0.4s, font-size 0.4s, -webkit-transform 0.4s;
-     -moz-transition: top 0.4s, height 0.4s, font-size 0.4s,    -moz-transform 0.4s;
-       -o-transition: top 0.4s, height 0.4s, font-size 0.4s,      -o-transform 0.4s;
-          transition: top 0.4s, height 0.4s, font-size 0.4s,         transform 0.4s;
-
-}
-
-/* On hover, make the progress bar grow to something that's more clickable.
-    This simply changes the overall font for the progress bar, and this
-    updates both the em-based widths and heights, as wells as the icon font */
-.vjs-default-skin:hover .vjs-progress-control {
-  font-size: .9em;
-
-  /* Even though we're not changing the top/height, we need to include them in
-      the transition so they're handled correctly. */
-  -webkit-transition: top 0.2s, height 0.2s, font-size 0.2s, -webkit-transform 0.2s;
-     -moz-transition: top 0.2s, height 0.2s, font-size 0.2s,    -moz-transform 0.2s;
-       -o-transition: top 0.2s, height 0.2s, font-size 0.2s,      -o-transform 0.2s;
-          transition: top 0.2s, height 0.2s, font-size 0.2s,         transform 0.2s;
-}
-
-/* Box containing play and load progresses. Also acts as seek scrubber. */
-.vjs-default-skin .vjs-progress-holder {
-  /* Placement within the progress control item */
-  height: 100%;
-}
-
-/* Progress Bars */
-.vjs-default-skin .vjs-progress-holder .vjs-play-progress,
-.vjs-default-skin .vjs-progress-holder .vjs-load-progress {
-  position: absolute;
-  display: block;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  /* Needed for IE6 */
-  left: 0;
-  top: 0;
-}
-
-.vjs-default-skin .vjs-play-progress {
-  /*
-    Using a data URI to create the white diagonal lines with a transparent
-      background. Surprising works in IE8.
-      Created using http://www.patternify.com
-    Changing the first color value will change the bar color.
-    Also using a paralax effect to make the lines move backwards.
-      The -50% left position makes that happen.
-  */
-  background: #66A8CC
-    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAP0lEQVQIHWWMAQoAIAgDR/QJ/Ub//04+w7ZICBwcOg5FZi5iBB82AGzixEglJrd4TVK5XUJpskSTEvpdFzX9AB2pGziSQcvAAAAAAElFTkSuQmCC)
-    -50% 0 repeat;
-}
-.vjs-default-skin .vjs-load-progress {
-  background: rgb(100, 100, 100); /* IE8- Fallback */
-  background: rgba(255, 255, 255, 0.4);
-}
-
-.vjs-default-skin .vjs-seek-handle {
-  width: 1.5em;
-  height: 100%;
-}
-
-.vjs-default-skin .vjs-seek-handle:before {
-  padding-top: 0.1em; /* Minor adjustment */
-}
-
-/* Time Display
--------------------------------------------------------------------------------- */
-.vjs-default-skin .vjs-time-controls {
-  font-size: 1em;
-  /* Align vertically by making the line height the same as the control bar */
-  line-height: 3em;
-}
-.vjs-default-skin .vjs-current-time { float: left; }
-.vjs-default-skin .vjs-duration { float: left; }
-/* Remaining time is in the HTML, but not included in default design */
-.vjs-default-skin .vjs-remaining-time { display: none; float: left; }
-.vjs-time-divider { float: left; line-height: 3em; }
-
-/* Fullscreen
--------------------------------------------------------------------------------- */
-.vjs-default-skin .vjs-fullscreen-control {
-  width: 3.8em;
-  cursor: pointer;
-  float: right;
-}
-.vjs-default-skin .vjs-fullscreen-control:before {
-  content: "\e000"; /* Enter full screen */
-}
-.vjs-default-skin.vjs-fullscreen .vjs-fullscreen-control:before {
-  content: "\e00b"; /* Exit full screen */
-}
-
-/* Big Play Button (at start)
----------------------------------------------------------*/
-.vjs-default-skin .vjs-big-play-button {
-  display: block;
-  z-index: 2;
-  position: absolute;
-  top: 2em;
-  left: 2em;
-  width: 12.0em;
-  height: 8.0em;
-  margin: 0;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  opacity: 1;
-
-  /* Need a slightly gray bg so it can be seen on black backgrounds */
-  background-color: rgb(40, 40, 40);
-  background-color: rgba(7, 40, 50, 0.7);
-
-  border: 0.3em solid rgb(50, 50, 50);
-  border-color: rgba(255, 255, 255, 0.25);
-
-  -webkit-border-radius: 25px;
-     -moz-border-radius: 25px;
-          border-radius: 25px;
-
-  -webkit-box-shadow: 0px 0px 1em rgba(255, 255, 255, 0.25);
-     -moz-box-shadow: 0px 0px 1em rgba(255, 255, 255, 0.25);
-          box-shadow: 0px 0px 1em rgba(255, 255, 255, 0.25);
-
-  -webkit-transition: border 0.4s, -webkit-box-shadow 0.4s, -webkit-transform 0.4s;
-     -moz-transition: border 0.4s,    -moz-box-shadow 0.4s,    -moz-transform 0.4s;
-       -o-transition: border 0.4s,      -o-box-shadow 0.4s,      -o-transform 0.4s;
-          transition: border 0.4s,         box-shadow 0.4s,         transform 0.4s;
-}
-
-.vjs-default-skin:hover .vjs-big-play-button,
-.vjs-default-skin .vjs-big-play-button:focus {
-  outline: 0;
-  border-color: rgb(255, 255, 255);
-  border-color: rgba(255, 255, 255, 1);
-  /* IE8 needs a non-glow hover state */
-  background-color: rgb(80, 80, 80);
-  background-color: rgba(50, 50, 50, 0.75);
-
-  -webkit-box-shadow: 0 0 3em #fff;
-     -moz-box-shadow: 0 0 3em #fff;
-          box-shadow: 0 0 3em #fff;
-
-  -webkit-transition: border 0s, -webkit-box-shadow 0s, -webkit-transform 0s;
-     -moz-transition: border 0s,    -moz-box-shadow 0s,    -moz-transform 0s;
-       -o-transition: border 0s,      -o-box-shadow 0s,      -o-transform 0s;
-          transition: border 0s,         box-shadow 0s,         transform 0s;
-}
-
-.vjs-default-skin .vjs-big-play-button:before {
-  content: "\e001"; /* Play icon */
-  font-family: VideoJS;
-  font-size: 3em;
-  line-height: 2.66;
-  text-shadow: 0.05em 0.05em 0.1em #000;
-  text-align: center; /* Needed for IE8 */
-
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 
 /* Loading Spinner
 ---------------------------------------------------------*/
@@ -571,7 +529,7 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 
 .vjs-default-skin .vjs-loading-spinner:before {
   content: "\e00a"; /* Loading spinner icon */
-  font-family: VideoJS;
+  font-family: FontAwesome;
 
   position: absolute;
   width: 1em;
@@ -585,7 +543,7 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
    and `background-clip: text` only works in Webkit. */
 .vjs-default-skin .vjs-loading-spinner:after {
   content: "\e00a"; /* Loading spinner icon */
-  font-family: VideoJS;
+  font-family: FontAwesome;
 
   position: absolute;
   width: 1em;
@@ -620,8 +578,15 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 /* Menu Buttons (Captions/Subtitles/etc.)
 -------------------------------------------------------------------------------- */
 .vjs-default-skin .vjs-menu-button {
-  float: right;
+  width:30px;
+  height:30px;
   cursor: pointer;
+  float: left;
+  border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;
+  background:black;
+  display:block;
+  margin-top:32px;
+  line-height: 30px;
 }
 
 .vjs-default-skin .vjs-menu {
@@ -631,13 +596,14 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   left: 0em; /* (Width of vjs-menu - width of button) / 2 */
   width: 0em;
   height: 0em;
-  margin-bottom: 3em;
+  margin-bottom: 30px;
 
-  border-left: 2em solid transparent;
-  border-right: 2em solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
 
-  border-top: 1.55em solid rgb(0, 0, 0); /* Same top as ul bottom */
-  border-top-color: rgba(7, 40, 50, 0.5); /* Same as ul background */
+  border-top: 10px solid black; /* Same top as ul bottom */
+  border-top-color: black; /* Same as ul background */
+  margin-left:5px;
 }
 
 /* Button Pop-up Menu */
@@ -645,19 +611,15 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   display: block;
   padding: 0; margin: 0;
   position: absolute;
-  width: 10em;
-  bottom: 1.5em; /* Same bottom as vjs-menu border-top */
+  width: 80px;
+  bottom: 10px; /* Same bottom as vjs-menu border-top */
   max-height: 15em;
   overflow: auto;
-
-  left: -5em; /* Width of menu - width of button / 2 */
+  border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;
+  left: -40px; /* Width of menu - width of button / 2 */
 
   background-color: rgb(0, 0, 0);
   background-color: rgba(7, 40, 50, 0.7);
-
-  -webkit-box-shadow: -20px -20px 0px rgba(255, 255, 255, 0.5);
-     -moz-box-shadow: 0 0 1em rgba(255, 255, 255, 0.5);
-          box-shadow: -0.2em -0.2em 0.3em rgba(255, 255, 255, 0.2);
 }
 
 /*.vjs-default-skin .vjs-menu-button:focus ul,*/ /* This is not needed because keyboard accessibility for the caption button is not handled with the focus any more. */
@@ -685,10 +647,6 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   background-color: rgba(255, 255, 255, 0.75);
   color: #111;
   outline: 0;
-
-  -webkit-box-shadow: 0 0 1em rgba(255, 255, 255, 1);
-     -moz-box-shadow: 0 0 1em rgba(255, 255, 255, 1);
-          box-shadow: 0 0 1em rgba(255, 255, 255, 1);
 }
 .vjs-default-skin .vjs-menu-button ul li.vjs-menu-title {
   text-align: center;
@@ -699,23 +657,4 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   margin: 0 0 0.3em 0;
   font-weight: bold;
   cursor: default;
-}
-
-/* Subtitles Button */
-.vjs-default-skin .vjs-subtitles-button:before { content: "\e00c"; }
-
-/* There's unfortunately no CC button in FontAwesome, so we need
-    to use another font. Please +1 the fontawesome request.
-    https://github.com/FortAwesome/Font-Awesome/issues/968 */
-.vjs-default-skin .vjs-captions-button:before {
-  content: "\e008";
-}
-
-
-/* Replacement for focus outline */
-.vjs-default-skin .vjs-captions-button:focus .vjs-control-content:before,
-.vjs-default-skin .vjs-captions-button:hover .vjs-control-content:before {
-  -webkit-box-shadow: 0 0 1em rgba(255, 255, 255, 1);
-     -moz-box-shadow: 0 0 1em rgba(255, 255, 255, 1);
-          box-shadow: 0 0 1em rgba(255, 255, 255, 1);
 }
