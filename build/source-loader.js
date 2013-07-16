@@ -1,3 +1,8 @@
+/* 	we use compressJS by Aliaksandr Astashenkau (https://github.com/dfsq/compressJS.sh)
+	to compress all javascript files into one using the following script:
+	$ ./compressjs.sh core.js core-object.js events.js lib.js component.js button.js slider.js menu.js player.js control-bar/control-bar.js control-bar/time-display.js control-bar/progress-control.js control-bar/volume-control.js control-bar/mute-toggle.js control-bar/volume-menu-button.js menu-group/menu-group.js menu-group/fullscreen-toggle.js menu-group/share-toggle.js menu-group/play-toggle.js poster.js loading-spinner.js media/media.js media/html5.js media/flash.js media/loader.js tracks.js json.js setup.js plugins.js
+*/
+
 // This file is used to load the video.js source files into a page
 // in the correct order based on dependencies.
 // When you create a new source file you will need to add
@@ -25,16 +30,17 @@ var sourceFiles = [
   "src/js/menu.js",
   "src/js/player.js",
   "src/js/control-bar/control-bar.js",
-  "src/js/control-bar/play-toggle.js",
   "src/js/control-bar/time-display.js",
-  "src/js/control-bar/fullscreen-toggle.js",
   "src/js/control-bar/progress-control.js",
   "src/js/control-bar/volume-control.js",
   "src/js/control-bar/mute-toggle.js",
   "src/js/control-bar/volume-menu-button.js",
+  "src/js/menu-group/menu-group.js",
+  "src/js/menu-group/fullscreen-toggle.js",
+  "src/js/menu-group/share-toggle.js",
+  "src/js/menu-group/play-toggle.js",
   "src/js/poster.js",
   "src/js/loading-spinner.js",
-  "src/js/big-play-button.js",
   "src/js/media/media.js",
   "src/js/media/html5.js",
   "src/js/media/flash.js",

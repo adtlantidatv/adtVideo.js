@@ -87,8 +87,8 @@ vjs.options = {
     'posterImage': {},
     'textTrackDisplay': {},
     'loadingSpinner': {},
-    'bigPlayButton': {},
-    'controlBar': {}
+    'controlBar': {},
+    'menuGroup': {}
   }
 };
 
